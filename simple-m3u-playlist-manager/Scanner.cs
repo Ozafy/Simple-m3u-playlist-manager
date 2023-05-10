@@ -38,7 +38,7 @@ namespace simple_m3u_playlist_manager {
 
             if (deeperMusicFiles.Count > 0) {
                 if (!TestRun) {
-                    File.WriteAllLines(m3uFile, deeperMusicFiles);
+                    await File.WriteAllLinesAsync(m3uFile, deeperMusicFiles);
                 }
                 Logger.Log($"Found:");
                 Logger.Log(string.Join(Environment.NewLine, deeperMusicFiles));
