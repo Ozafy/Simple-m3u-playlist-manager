@@ -50,7 +50,7 @@ try {
             }
         }
         await task;
-        Console.WriteLine($"Started scanning...Done");
+        Console.WriteLine($"\rStarted scanning...Done");
     } else {
         Console.WriteLine($"'{dir}' is not a valid directory");
         return 1;
