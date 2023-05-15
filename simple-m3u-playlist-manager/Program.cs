@@ -37,20 +37,10 @@ try {
     Scanner.Instance.TestRun = testRun.Equals("y");
 
     if (Directory.Exists(dir)) {
-        Console.Write("\rScanning...-");
+        Console.Write("\rScanning...");
         Logger.StartLoging(dir, fileFilter, overWriteM3u);
-        var task = Scanner.Instance.Scan(dir, fileTypes, overWriteM3u);
-        string[] whee = { "-", "\\", "|", "/" };
-        int i = 0;
-        while (task.Status == TaskStatus.Running) {
-            Console.Write("\rStarted scanning...{0}%   ", whee[i]);
-            i++;
-            if (i >= whee.Length) {
-                i = 0;
-            }
-        }
-        await task;
-        Console.WriteLine($"\rStarted scanning...Done");
+        Scanner.Instance.Scan(dir, fileTypes, overWriteM3u);
+        Console.WriteLine($"\rrScanning...Done");
     } else {
         Console.WriteLine($"'{dir}' is not a valid directory");
         return 1;
