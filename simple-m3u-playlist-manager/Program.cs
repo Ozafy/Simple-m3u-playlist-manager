@@ -39,8 +39,8 @@ try {
     if (Directory.Exists(dir)) {
         Console.Write("\rScanning...");
         Logger.StartLoging(dir, fileFilter, overWriteM3u);
-        await Scanner.Instance.Scan(dir, fileTypes, overWriteM3u);
-        Console.WriteLine($"\rrScanning...Done");
+        Scanner.Instance.Scan(dir, fileTypes, overWriteM3u);
+        Console.WriteLine("\rScanning...Done");
     } else {
         Console.WriteLine($"'{dir}' is not a valid directory");
         return 1;

@@ -17,10 +17,10 @@ namespace simple_m3u_playlist_manager {
 
         public bool TestRun = true;
 
-        public async Task<(string DirName, List<string> MusicFiles)> Scan(string dir, string[] fileTypes, bool overWriteM3u) {
+        public (string DirName, List<string> MusicFiles) Scan(string dir, string[] fileTypes, bool overWriteM3u) {
             var deeperMusicFiles = new List<string>();
             foreach (string d in Directory.GetDirectories(dir)) {
-                var scan = await Scan(d, fileTypes, overWriteM3u);
+                var scan = Scan(d, fileTypes, overWriteM3u);
                 deeperMusicFiles.AddRange(scan.MusicFiles.Select(x => Path.Combine(scan.DirName, x)).ToList());
             }
             Logger.Log($"Looking in {dir}{Path.DirectorySeparatorChar}");
@@ -38,7 +38,7 @@ namespace simple_m3u_playlist_manager {
 
             if (deeperMusicFiles.Count > 0) {
                 if (!TestRun) {
-                    await File.WriteAllLinesAsync(m3uFile, deeperMusicFiles);
+                    File.WriteAllLinesAsync(m3uFile, deeperMusicFiles);
                 }
                 Logger.Log($"Found:");
                 Logger.Log(string.Join(Environment.NewLine, deeperMusicFiles));

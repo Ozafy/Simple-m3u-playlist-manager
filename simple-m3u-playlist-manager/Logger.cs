@@ -16,9 +16,13 @@ namespace simple_m3u_playlist_manager {
         }
 
         public static void Log(string message) {
-            var logFile = Path.Combine(Directory.GetCurrentDirectory(), logFileName);
-            using (StreamWriter sw = File.AppendText(logFile)) {
-                sw.WriteLine(message);
+            try {
+                var logFile = Path.Combine(Directory.GetCurrentDirectory(), logFileName);
+                using (StreamWriter sw = File.AppendText(logFile)) {
+                    sw.WriteLine(message);
+                }
+            } catch (Exception ex) {
+                //Console.WriteLine($"Error writing to log file: {ex.Message}: {message}");
             }
         }
     }
